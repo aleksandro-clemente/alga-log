@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.algaworks.algalog.dto.ClienteDTO;
@@ -18,6 +19,11 @@ public class ClienteController {
 	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> listar(){
 		List<ClienteDTO>dto = clienteService.listar();
+		return ResponseEntity.ok().body(dto);
+	}
+	@GetMapping("/{clienteId}")
+	public ResponseEntity<ClienteDTO> buscar(@PathVariable Long clienteId){
+		ClienteDTO dto = clienteService.buscar(clienteId);
 		return ResponseEntity.ok().body(dto);
 	}
 }
