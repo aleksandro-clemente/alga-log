@@ -1,6 +1,9 @@
 package com.algaworks.algalog.api.controller;
 import java.net.URI;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,13 +37,13 @@ public class ClienteController {
 		return ResponseEntity.ok().body(dto);
 	}
 	@PostMapping
-	public ResponseEntity<ClienteDTO> adicionar(@RequestBody ClienteDTO dto){
+	public ResponseEntity<ClienteDTO> adicionar(@Valid @RequestBody ClienteDTO dto){
 		 dto = clienteService.adicionar(dto);
 		 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		 return ResponseEntity.created(uri).body(dto);	 
 	}
 	@PutMapping("/{id}")
-	public ResponseEntity<ClienteDTO> atualizar(@PathVariable Long clienteId,@RequestBody ClienteDTO dto){
+	public ResponseEntity<ClienteDTO> atualizar(@Valid @PathVariable Long clienteId,@RequestBody ClienteDTO dto){
 		dto = clienteService.atualizar(clienteId, dto);
 		return ResponseEntity.ok().body(dto);
 	}
