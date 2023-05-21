@@ -38,7 +38,7 @@ public class ClienteService {
 	@Transactional
 	public ClienteDTO atualizar(Long clienteId,ClienteDTO dto) {
 		Cliente cliente = clienteRepository.findById(clienteId)
-				.orElseThrow(()-> new EntidadeNaoEncontradaException("Recurso nao encontrado"));
+				.orElseThrow(()-> new EntidadeNaoEncontradaException("Não existe cliente de id "+clienteId));
 		copiarDtoParaCliente(cliente,dto);
 		clienteRepository.save(cliente);
 		return new ClienteDTO(cliente);

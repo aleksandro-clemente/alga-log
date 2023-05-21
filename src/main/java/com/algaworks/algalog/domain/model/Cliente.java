@@ -6,27 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import com.algaworks.algalog.ValidationGroups;
 
 @Entity
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull(groups = ValidationGroups.ClienteId.class)
 	private Long id;
-	
-	@NotBlank(message="Campo Requerido")
-	@Size(max=60)
-	private String nome;
-	
-	@NotBlank(message="Campo Requerido")
-	@Email(message="Digite um email válido")
+	private String nome;	
 	private String email;
-	
-	@NotBlank(message="Campo Requerido")
-	@Size(max=20)
 	private String fone;
 	
 	public Cliente() {

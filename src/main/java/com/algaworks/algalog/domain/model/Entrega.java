@@ -13,7 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 
+import com.algaworks.algalog.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -24,14 +29,17 @@ public class Entrega {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
+	@Valid
+	@ConvertGroup(from=Default.class,to=ValidationGroups.ClienteId.class)
 	private Cliente cliente;
 	
 	@Embedded
 	private Destinatario destinatario;
 	private BigDecimal taxa;
-	
+	 
 	@Enumerated(EnumType.STRING)
 	@JsonProperty(access=Access.READ_ONLY)
 	private StatusEntrega status;
