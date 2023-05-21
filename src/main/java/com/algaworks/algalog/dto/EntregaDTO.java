@@ -2,14 +2,7 @@ package com.algaworks.algalog.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
-
-import com.algaworks.algalog.ValidationGroups;
 import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.model.Destinatario;
 import com.algaworks.algalog.domain.model.Entrega;

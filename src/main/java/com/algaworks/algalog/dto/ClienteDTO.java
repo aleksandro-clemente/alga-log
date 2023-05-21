@@ -1,17 +1,13 @@
 package com.algaworks.algalog.dto;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.algaworks.algalog.ValidationGroups;
 import com.algaworks.algalog.domain.model.Cliente;
 public class ClienteDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@NotNull(groups = ValidationGroups.ClienteId.class)
+
 	private Long id;
 	@NotBlank(message="Campo Requerido")
 	@Size(max=60)
